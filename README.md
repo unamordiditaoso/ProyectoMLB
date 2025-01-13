@@ -1,4 +1,4 @@
-# Nombre del Proyecto
+# MLBStats
 
 > Proyecto de una aplicación web basada en microservicios (tanto Python como Node.js) para gestionar los equipos, los partidos y la clasificación de la mejor liga de Beisbol del mundo, la MLB. Compuesta por un frontend y varios microservicios independientes.
 
@@ -28,6 +28,7 @@ Para ejecutar el servidor necesitas realizar el siguiente comando desde la carpe
 
 ```bash
 docker-compose up --build
+```
 
 ---
 
@@ -35,4 +36,4 @@ docker-compose up --build
 
 Esta es la IP para acceder al lado cliente del proyecto:
 
-- http://localhost:3000/
+- [http://localhost:3000/](http://localhost:3000/)
