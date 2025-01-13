@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= equipo.nombre %> - MLBStats</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/equipo.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" id="menuIcon">
+           <h1>&#9776;&ensp;MLBStats</h1>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="/home">Equipos</a></li>
+                <li><a href="/favoritos">Favoritos</a></li>
+                <li><a href="/partidos">Partidos</a></li>
+                <li><a href="/clasificacion">Clasificacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <header>
+        <h1>
+            <%= equipo.nombre %>
+            <span class="star <%= fav ? 'favorito' : '' %>" id="favorite-star" onclick="toggleFavorite('<%= equipo.nombre %>')">
+                &#9733;
+            </span>
+        </h1>
+        <img src="<%= equipo.Logo %>" alt="<%= equipo.nombre %> Logo" class="logo-equipo">
+    </header>
+
+    <section class="detalles-equipo">
+        <h2>Partidos destacados</h2>
+        <table class="tabla-partidos">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Equipo Local</th>
+                    <th>Resultado</th>
+                    <th>Equipo Visitante</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% partidos.forEach(partido => { %>
+                    <tr onclick="window.location.href='/partido/<%= partido._id %>'">
+                        <td><%= partido.fecha %></td>
+                        <td>
+                            <span class="equipo-nombre fn"><%= partido.equipoLocal.nombre %></span>
+                            <span class="equipo-nombre abb"><%= partido.equipoLocal.abreviacion %></span>
+                            &ensp;&ensp;<img src="<%= partido.equipoLocal.Logo %>" class="logo-partido"></td>
+                        <td><%= partido.marcadorLocal %> - <%= partido.marcadorVisitante %></td>
+                        <td><img src="<%= partido.equipoVisitante.Logo %>" class="logo-partido">&ensp;&ensp;
+                            <span class="equipo-nombre fn"><%= partido.equipoVisitante.nombre %></span>
+                            <span class="equipo-nombre abb"><%= partido.equipoVisitante.abreviacion %></span></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </section>
+    <script src="/js/base.js"></script>
+    <script src="/js/equipo.js"></script>
+</body>
+</html>

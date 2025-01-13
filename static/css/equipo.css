@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    margin-top: 45px;
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header .logo-equipo {
+    max-width: 150px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.detalles-equipo {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.detalles-equipo h2 {
+    text-align: center;
+    color: #003366;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.tabla-partidos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.tabla-partidos th, .tabla-partidos td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.tabla-partidos th {
+    background-color: #003366;
+    color: white;
+}
+
+.logo-partido {
+    width: 10%;
+    vertical-align: middle;
+}
+
+.equipo-nombre.abb {
+    display: none;
+}
+
+.tabla-partidos tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla-partidos tr:hover {
+    background-color: #ddd;
+}
+
+.star {
+    font-size: 30px;
+    margin-left: 2%;
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.star.favorito {
+    color: gold;
+}
+
+@media screen and (max-width: 980px) {
+    .tabla-partidos{
+        font-size: 0.9rem;
+    }
+    .logo-partido {
+        width: 12%;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .tabla-partidos{
+        font-size: 0.8rem;
+    }
+    .logo-partido {
+        width: 15%;
+    }
+
+    .equipo-nombre.fn {
+        display: none;
+    }
+
+    .equipo-nombre.abb {
+        display: inline;
+    }
+}
+@media screen and (max-width: 500px) {
+    .tabla-partidos{
+        font-size: 0.7rem;
+    }
+    .logo-partido {
+        width: 18%;
+    }
+    .equipo-nombre.fn {
+        display: none;
+    }
+
+    .equipo-nombre.abb {
+        display: inline;
+    }
+}

@@ -1,0 +1,105 @@
+.partidos-container {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.partido-card {
+    background-color: #1c2536;
+    border: 1px solid #181f2c;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.escudo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.partido-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.partido-card h3 {
+    font-size: 120%;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.partido-card-p {
+    font-size: 1rem;
+    color: #fff;
+    margin: 2px 0;
+}
+
+.resultado {
+    font-size: 2rem;
+    font-weight: 750;
+    color: #fff;
+    margin: 2px 0;
+}
+
+.partido-card img {
+    width: 15%;
+    height: auto;
+    max-width: 120px;
+    margin-bottom: 10px;
+}
+
+.game-time {
+    font-size: 1rem;
+    color: #ff6161;
+}
+
+.fecha-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    color: #ddd;
+}
+
+.botonFlecha{
+    width: 50px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.flecha{
+    height: auto;
+    width: 100%;
+}
+
+#fechaActual {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 980px) {
+    .botonFlecha{
+        width: 6%;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .botonFlecha{
+        width: 8%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .botonFlecha{
+        width: 10%;
+    }
+}

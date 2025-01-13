@@ -1,0 +1,89 @@
+.tabla-clasificacion {
+    width: 100%;
+    margin-top: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.tabla-clasificacion h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.tabla-clasificacion table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.tabla-clasificacion th {
+    background-color: #ff3b3b;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.th-equipo {
+    text-align: left;
+}
+
+.tabla-clasificacion td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.tabla-clasificacion img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.tabla-clasificacion tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.tabla-clasificacion tr:hover {
+    background-color: #97b0e2;
+    cursor: pointer;
+}
+
+.tabla-clasificacion td:nth-child(2),
+.tabla-clasificacion td:nth-child(3),
+.tabla-clasificacion td:nth-child(4),
+.tabla-clasificacion td:nth-child(5),
+.tabla-clasificacion td:nth-child(6) {
+    text-align: center;
+}
+
+.team-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .tabla-clasificacion table {
+        font-size: 0.9rem;
+    }
+
+    .tabla-clasificacion img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .tabla-clasificacion th,
+    .tabla-clasificacion td {
+        padding: 8px;
+    }
+}

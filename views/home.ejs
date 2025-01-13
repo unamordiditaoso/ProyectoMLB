@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos MLB</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body class="body1">
+    <div class="navbar">
+        <div class="menu-icon" id="menuIcon">
+           <h1>&#9776;&ensp;MLBStats</h1>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="/home">Equipos</a></li>
+                <li><a href="/favoritos">Favoritos</a></li>
+                <li><a href="/partidos">Partidos</a></li>
+                <li><a href="/clasificacion">Clasificacion</a></li>
+            </ul>
+        </div>
+        <% if (!fav) { %>
+        <div>
+            <input id="Buscador" type="text" placeholder="Buscar equipo...">
+            <span id="IconoBusqueda" class="search-icon">&#128269;</span>
+            &ensp;&ensp;&ensp;
+        </div>
+        <% } %>
+    </div>
+    <h1 class="titulo1">&ensp;
+        <% if (!fav) { %>
+            Equipos
+        <% } else { %>
+            Favoritos
+        <% } %>
+    </h1>
+    <div id="teamContainer" class="team-container">
+        <% teams.forEach(function(equipo) { %>
+            <a href="/equipo/<%= equipo.nombre %>" class="team-link">
+                <div class="team-card">
+                    <img src="<%= equipo.Logo %>" alt="<%= equipo.nombre %>">
+                    <h3><%= equipo.nombre %></h3>
+                </div>
+            </a>
+        <% }); %>
+    </div>
+    
+    <script src="/js/base.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>

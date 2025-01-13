@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Partido</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/partido.css">
+</head>
+    <body>
+        <div class="navbar">
+            <div class="menu-icon" id="menuIcon">
+               <h1>&#9776;&ensp;MLBStats</h1>
+            </div>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="/home">Equipos</a></li>
+                    <li><a href="/favoritos">Favoritos</a></li>
+                    <li><a href="/partidos">Partidos</a></li>
+                    <li><a href="/clasificacion">Clasificacion</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="content">
+            <div class="teams-info">
+                <div class="team" onclick="window.location.href='/equipo/<%= partido.equipoVisitante.nombre %>'">
+                    <h3>Visitante</h3>
+                    <img src="<%= partido.equipoVisitante.Logo %>">
+                    <h3 class="equipo-nombre fn"><%= partido.equipoVisitante.nombre %></h3>
+                    <h3 class="equipo-nombre abb"><%= partido.equipoVisitante.abreviacion %></h3>
+                    <div class="score"><%= partido.marcadorVisitante %></div>
+                    <div class="details"><%= partido.resultado.awayTeamResult.hits %> <span class="fn">hits</span><span class="abb">H</span> | <%= partido.resultado.awayTeamResult.errors %> <span class="fn">errores</span><span class="abb">E</span></div>
+                </div>
+                <div class="game-header">
+                    <span class="ronda">
+                        <% if (partido.ronda == 0) { %>
+                            <p>Temporada regular</p>
+                        <% } else if (partido.ronda == 200) { %>
+                            <p>MLB FINALS</p>
+                        <% } else if (partido.ronda == 150) { %>
+                            <p>SEMI-FINALS</p>
+                        <% } else if (partido.ronda == 160) { %>
+                            <p>PLAYOFF</p>
+                        <% } else { %>
+                            <p>Pretemporada</p>
+                        <% } %>
+                    </span>
+                    <span class="game-fecha"><%= partido.fecha %></span>
+                    <span class="game-hora"><%= partido.hora %></span>
+                    <span><%= partido.equipoLocal.estadio %></span>
+                    <div class="game-status">
+                    <% if (partido.estado == "FT") { %>
+                        <p>Finalizado</p>
+                    <% } else if (partido.estado == "NS") { %>
+                        <p>No empezado</p>
+                    <% } else { %>
+                        <p><%= partido.estado %></p>
+                    <% } %></div>
+                </div>
+                <div class="team" onclick="window.location.href='/equipo/<%= partido.equipoLocal.nombre %>'">
+                    <h3>Local</h3>
+                    <img src="<%= partido.equipoLocal.Logo %>">
+                    <h3 class="equipo-nombre fn"><%= partido.equipoLocal.nombre %></h3>
+                    <h3 class="equipo-nombre abb"><%= partido.equipoLocal.abreviacion %></h3>
+                    <div class="score"><%= partido.marcadorLocal %></div>
+                    <div class="details"><%= partido.resultado.homeTeamResult.hits %> <span class="h-e fn">hits</span><span class="h-e abb">H</span> | <%= partido.resultado.homeTeamResult.errors %> <span class="h-e fn">errores</span><span class="h-e abb">E</span></div>
+                </div>
+            </div>
+    
+            <div class="innings-summary">
+                <h2>Resumen por Innings</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Equipo</th>
+                            <% for (let i = 1; i <= maxInnings; i++) { %>
+                                <th><%= i %></th>
+                            <% } %>
+                            <th>R</th>
+                            <th>H</th>
+                            <th>E</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="equipo-nombre fn"><%= partido.equipoVisitante.nombre %></span>
+                            <span class="equipo-nombre abb"><%= partido.equipoVisitante.abreviacion %></span></td>
+                            <% partido.resultado.awayTeamResult.innings.forEach((inning, index) => { %>
+                                <td><%= inning %></td>
+                            <% }) %>
+                            <% for (let i = partido.resultado.awayTeamResult.innings.length; i < maxInnings; i++) { %>
+                                <td>-</td> 
+                            <% } %>
+                            <td class="highlight"><%= partido.marcadorVisitante %></td>
+                            <td><%= partido.resultado.awayTeamResult.hits %></td>
+                            <td><%= partido.resultado.awayTeamResult.errors %></td>
+                        </tr>
+                        <tr>
+                            <td><span class="equipo-nombre fn"><%= partido.equipoLocal.nombre %></span>
+                                <span class="equipo-nombre abb"><%= partido.equipoLocal.abreviacion %></span></td>
+                            <% partido.resultado.homeTeamResult.innings.forEach((inning, index) => { %>
+                                <td><%= inning %></td>
+                            <% }) %>
+                            <% for (let i = partido.resultado.homeTeamResult.innings.length; i < maxInnings; i++) { %>
+                                <td>-</td> 
+                            <% } %>
+                            <td class="highlight"><%= partido.marcadorLocal %></td>
+                            <td><%= partido.resultado.homeTeamResult.hits %></td>
+                            <td><%= partido.resultado.homeTeamResult.errors %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="/js/base.js"></script>
+    </body>
+</html>

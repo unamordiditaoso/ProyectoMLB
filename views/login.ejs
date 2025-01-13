@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Login - MLBStats</title>
+</head>
+<body class="body">
+    <div class="login-container">
+        <h1 class="titulo">MLBStats</h1>
+        <p class="error" id="Mensaje"><%= mensaje %></p>
+
+        <form action="/login" method="POST">
+            <input class="textField" type="text" name="email" placeholder="Usuario o Correo electrónico" required>
+            <input class="textField" type="password" name="password" placeholder="Contraseña" required>
+            <button class= "botonSubmit" type="submit">Login</button>
+        </form>
+        <p class="texto1">¿Eres nuevo aquí? <a class= "link" href="/registro">Regístrate</a></p>
+    </div>
+</body>
+</html>

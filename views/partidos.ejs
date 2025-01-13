@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos MLB</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/partidos.css">
+</head>
+<body class="body1">
+    <div class="navbar">
+        <div class="menu-icon" id="menuIcon">
+           <h1>&#9776;&ensp;MLBStats</h1>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="/home">Equipos</a></li>
+                <li><a href="/favoritos">Favoritos</a></li>
+                <li><a href="#">Partidos</a></li>
+                <li><a href="/clasificacion">Clasificacion</a></li>
+            </ul>
+        </div>
+    </div>
+    <h1 class="titulo1">&ensp;Partidos</h1>
+    <div class="fecha-navegacion">
+        <button id="prevDia" class="botonFlecha"> <img src="/img/flechaI.png" alt="Día Anterior" class="flecha"></button>
+        <span id="fechaActual"><%= fechaActual %></span>
+        <button id="nextDia" class="botonFlecha"><img src="/img/flechaD.png" alt="Día Anterior" class="flecha"></button>
+    </div>
+    <div class="partidos-container">
+        <% partidos.forEach(function(partido) { %>
+            <div class="partido-card" onclick="window.location.href='/partido/<%= partido._id %>'">
+                <p class="partido-card-p">Fecha: <%= partido.fecha %></p>
+                <p class="game-time">Hora: <%= partido.hora %></p>
+                <div class="escudo-container">
+                    <img class="escudo equipo-local" src="<%= partido.equipoLocal.Logo %>" alt="<%= partido.equipoLocal %>">
+                    <h3><%= partido.equipoLocal.nombre %> vs <%= partido.equipoVisitante.nombre %></h3>
+                    <img class="escudo equipo-visitante" src="<%= partido.equipoVisitante.Logo %>" alt="<%= partido.equipoVisitante %>">
+                </div>
+                <p class="resultado"><%= partido.marcadorLocal %> - <%= partido.marcadorVisitante %></p>
+            </div>
+        <% }); %>
+    </div>
+    
+    <script src="/js/base.js"></script>
+    <script src="/js/partidos.js"></script>
+</body>
+</html>

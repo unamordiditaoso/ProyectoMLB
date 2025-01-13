@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: Product Microservice API
+  version: 1.0.0
+  description: API para gestionar equipos y partidos de la MLB.
+servers:
+  - url: http://servicio-datos:6000
+    description: Servidor local de desarrollo
+
+paths:
+  /api/equipos:
+    get:
+      summary: Obtener todos los equipos
+      responses:
+        '200':
+          description: Todos los equipos obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Equipo' 
+        '500':
+          description: Error obteniendo todos los equipos.
+  /api/equipos/buscar:
+    get:
+      summary: Buscar equipos por nombre
+      description: Obtener todos los equipos que coincidan con el termino buscado
+      parameters:
+        - name: nombre
+          in: query
+          required: true
+          description: El nombre o término de búsqueda del equipo.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Equipos encontrados que coinciden con el texto buscado.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Equipo' 
+        '400':
+          description: Parámetro de búsqueda no proporcionado.
+        '500':
+          description: Error en la búsqueda de equipos.
+  /api/equipos/{nombre}:
+    get:
+      summary: Buscar equipo por nombre
+      description: Obtener un equipo en concreto por el nombre
+      parameters:
+        - name: nombre
+          in: path
+          required: true
+          description: El nombre del equipo.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Equipo obtenido correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Equipo' 
+        '400':
+          description: Equipo no encontrado.
+        '500':
+          description: Error al obtener el equipo.
+  /api/partidos:
+    get:
+      summary: Obtener todos los partidos por la fecha
+      responses:
+        '200':
+          description: Todos los partidos obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Partido' 
+        '400':
+          description: Fecha no proporcionada.
+        '500':
+          description: Error obteniendo los partidos.
+  /api/partidos/{equipo}:
+    get:
+      summary: Buscar partidos por equipo
+      description: Obtener los últimos 5 partidos jugados por un equipo y los próximos 5 partidos.
+      parameters:
+        - name: equipo
+          in: path
+          required: true
+          description: El nombre del equipo.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Partidos obtenidos correctamente.
+          content:
+            application/json:
+              schema:
+              type: array
+              items:
+                $ref: '#components/schemas/Partido' 
+        '400':
+          description: Equipo no proporcionado.
+        '500':
+          description: Error al obtener los partidos del equipo.
+  /api/partidos/{id}:
+    get:
+      summary: Buscar partido por id
+      description: Obtener el partido por el id proporcionado.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: El id del partido.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Partidos obtenido correctamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Partido' 
+        '404':
+          description: Partido no encontrado.
+        '500':
+          description: Error al obtener el partido.
+  /api/clasificacion:
+    get:
+      summary: Obtener clasificacion por año.
+      description: Calcular la clasificacion del año proporcionado segun los partidos jugados por los equipo.
+      parameters:
+        - name: temporada
+          in: query
+          required: true
+          description: El año de la temporada.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Clasificacion obtenida correctamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Clasificacion' 
+        '500':
+          description: Error al calcular la clasificación.
+components:
+  schemas:
+    Equipo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del equipo (generado por la base de datos MongoDB)
+        nombre:
+          type: string
+          description: Nombre del equipo.
+        abreviacion:
+          type: string
+          description: Abreviacion del equipo.
+        estadio:
+          type: string
+          description: El estadio del equipo.
+        capacidad:
+          type: string
+          description: Capacidad del estadio.
+        ubicacion:
+          type: string
+          description: Ciudad y/o estado donde se encuentra el equipo.
+        AnoCreacion:
+          type: string
+          description: Año de creación del equipo.
+        Logo:
+          type: string
+          description: URL del logo del equipo.
+    Result:
+      type: object
+      properties:
+        innings:
+          type: array
+          description: Lista de puntuaciones por innings.
+          items:
+            type: number
+        hits:
+          type: number
+          description: Total de hits del equipo.
+        errors:
+          type: number
+          description: Total de errores del equipo.
+    Partido:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID único del partido (generado por por la base de datos MongoDB).
+        equipoLocal:
+          type: object
+          properties:
+          description: Equipo local.
+        equipoVisitante:
+          type: object
+          properties:
+          description: Equipo visitante.
+        marcadorLocal:
+          type: number
+          description: Puntuación del equipo local.
+        marcadorVisitante:
+          type: number
+          description: Puntuación del equipo visitante.
+        temporada:
+          type: number
+          description: Año de la temporada del partido.
+        ronda:
+          type: number
+          description: |
+            Número de la ronda del partido, indicando el tipo de etapa:
+            - 0: Temporada regular
+            - 150: Semifinal
+            - 160: Playoff
+            - 200: Final
+            - 500: Pretemporada
+        fecha:
+          type: string
+          description: Fecha del partido.
+        hora:
+          type: string
+          description: Hora del partido.
+        estado:
+          type: string
+          description: |
+            Estado del partido:
+              - NS: No empezado
+              - FT: Finalizado
+        resultado:
+          type: object
+          properties:
+            homeTeamResult:
+              $ref: '#/components/schemas/Result'
+            awayTeamResult:
+              $ref: '#/components/schemas/Result'
+          description: Detalle del resultado por equipo.
+    Clasificacion:
+      type: object
+      properties:
+        logo:
+          type: string
+          description: URL del logo del equipo.
+        nombre:
+          type: string
+          description: Nombre del equipo.
+        V:
+          type: integer
+          description: Número de victorias.
+        D:
+          type: integer
+          description: Número de derrotas.
+        CA:
+          type: integer
+          description: Carreras anotadas.
+        CP:
+          type: integer
+          description: Carreras permitidas.

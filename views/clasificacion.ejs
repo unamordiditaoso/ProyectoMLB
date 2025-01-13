@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos MLB</title>
+    <link rel="stylesheet" href="/css/clasificacion.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    
+</head>
+<body class="body1">
+    <div class="navbar">
+        <div class="menu-icon" id="menuIcon">
+           <h1>&#9776;&ensp;MLBStats</h1>
+        </div>
+        <div class="menu" id="menu">
+            <ul>
+                <li><a href="/home">Equipos</a></li>
+                <li><a href="/favoritos">Favoritos</a></li>
+                <li><a href="/partidos">Partidos</a></li>
+                <li><a href="#">Clasificacion</a></li>
+            </ul>
+        </div>
+        <div class="temporada-selector">
+            <form method="get" action="/clasificacion">
+                <label for="selector-temporada">Temporada:</label>
+                <select id="selector-temporada" name="temporada" onchange="this.form.submit()">
+                    <% for (let year = 2021; year <= 2024; year++) { %>
+                        <option value="<%= year %>" <%= temporada == year ? 'selected' : '' %>><%= year %></option>
+                    <% } %>
+                </select>&ensp;&ensp;&ensp;&ensp;
+            </form>
+        </div>
+    </div>
+    
+    <table class="tabla-clasificacion">
+        <thead>
+            <tr>
+                <th class="th-equipo">Equipo</th>
+                <th>V</th>
+                <th>D</th>
+                <th>CA</th>
+                <th>CP</th>
+            </tr>
+        </thead>
+        <tbody id="tablaClasificacion">
+            <% clasificacion.forEach((equipo, index) => { %>
+                <tr>
+                    <td>
+                        <a href="/equipo/<%= equipo.nombre %>" class="team-link">
+                            <img src="<%= equipo.logo %>" alt="<%= equipo.nombre %> Logo" class="logo-img" />
+                            <%= equipo.nombre %>
+                        </a>
+                    <td><%= equipo.V %></td>
+                    <td><%= equipo.D %></td>
+                    <td><%= equipo.CA %></td>
+                    <td><%= equipo.CP %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <script src="/js/base.js"></script>
+    <script src="/js/clasificacion.js"></script>
+</body>
+</html>

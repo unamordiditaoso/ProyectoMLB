@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Registro - MLBStats</title>
+</head>
+<body class="body">
+    <div class="registro-container">
+        <h1 class="titulo">MLBStats</h1>
+        <p class="texto2">Crea tu cuenta</p>
+        <p class="error" id="Mensaje"><%= mensaje %></p>
+
+        <form action="/registro" method="POST">
+            <input class="textField" type="text" name="nombre" placeholder="Nombre" required><br>
+            <input class="textField" type="email" name="email" placeholder="Email" required><br>
+            <input class="textField" type="password" name="password" placeholder="Password" required><br>
+            <button class="botonSubmit" type="submit">Crear Cuenta</button>
+        </form>
+        <p class="texto1"><a class= "link" href="/">Volver</a></p>
+    </div>
+
+    <script src="/js/registro.js"></script>
+</body>
+</html>

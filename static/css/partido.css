@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #121826;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #1c2536;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.content {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.game-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.game-header span {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.game-status {
+    background-color: #ff6161;
+    padding: 0px 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.game-hora {
+    margin-bottom: 40px;
+}
+
+.ronda{
+    font-weight: bolder;
+}
+
+.teams-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c2536;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.team {
+    text-align: center;
+}
+
+.team img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.team h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.team .score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.team .details {
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.innings-summary {
+    background-color: #1c2536;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.innings-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+.innings-summary th,
+.innings-summary td {
+    text-align: center;
+    padding: 10px;
+}
+
+.innings-summary th {
+    background-color: #1c2536;
+}
+
+.innings-summary tr:nth-child() {
+    background-color: #1c2536;
+}
+
+.innings-summary .highlight {
+    font-weight: bold;
+    color: #ff6161;
+}
+.equipo-nombre.abb,
+.details .abb {
+    display: none;
+}
+
+@media screen and (max-width: 980px) {
+    .innings-summary th,
+    .innings-summary td {
+        font-size: 0.8rem;
+    }
+    .team img{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .innings-summary th,
+    .innings-summary td {
+        font-size: 0.65rem;
+    }
+    .team img{
+        width: 70%;
+    }
+    .team h3 {
+        font-size: 16px;
+    }
+    .team .score {
+        font-size: 21px;
+    }
+    .team .details {
+        font-size: 12px;
+    }
+    .equipo-nombre.fn,
+    .details .fn {
+        display: none;
+    }
+    .equipo-nombre.abb {
+        display: block;
+    }
+    .details .abb {
+        display: inline;
+    }
+    .innings-summary th:nth-last-child(-n+2),
+    .innings-summary td:nth-last-child(-n+2) {
+        display: none;
+    }
+}
+@media screen and (max-width: 500px) {
+    .innings-summary th,
+    .innings-summary td {
+        font-size: 0.5rem;
+    }
+    .team img{
+        width: 50%;
+    }
+}
